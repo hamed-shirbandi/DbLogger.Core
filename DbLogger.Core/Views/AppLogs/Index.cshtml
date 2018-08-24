@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DbLogger.Core.Application.Dto.AppLogOutput>
+@using Microsoft.Extensions.Options;
+@using DbLogger.Core;
+@inject IOptions<DbLoggerOptions> options
+@{
+    Layout = "~/Views/Shared/_DbLoggerMainLayout.cshtml";
+    ViewBag.Title = options.Value.ApplicationName+ " Logs";
+
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <form class="form-inline" asp-route="dbLoggerDefaultRoute" method="get">
+                <div class="form-group">
+                    @Html.TextBox("term", null, new { @class = "form-control", @placeholder = "search something" })
+                </div>
+                <div class="form-group">
+                    @Html.DropDownList("logLevel", Html.GetEnumSelectList(typeof(Microsoft.Extensions.Logging.LogLevel)), "All Log Levels", new { @class = "form-control" })
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+
+        </div>
+        <div class="panel-body" id="ajax-show-list">
+            @Html.Partial("_AppLogsList", Model)
+
+        </div>
+    </div>
+</div>

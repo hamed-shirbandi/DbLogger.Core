@@ -1,0 +1,29 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <a class="navbar-brand" href="#">@ViewBag.Title</a>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>Mvc Core DbLogger by <a href="http://codeblock.ir/" target="_blank">Hamed Shirbandi</a> </p>
+            @*<p>See project on <a href="https://github.com/hamed-shirbandi/EventLogger.Core" target="_blank"> github</a> </p>*@
+        </footer>
+    </div>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"></script>
+
+</body>
+</html>

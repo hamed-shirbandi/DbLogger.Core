@@ -1,0 +1,48 @@
+﻿@model DbLogger.Core.Application.Dto.AppLogOutput
+@using Microsoft.Extensions.Options;
+@using DbLogger.Core;
+@inject IOptions<DbLoggerOptions> options
+@{
+    Layout = "~/Views/Shared/_DbLoggerMainLayout.cshtml";
+    ViewBag.Title = options.Value.ApplicationName + "Log Details";
+
+}
+<div style="margin-top:20px;">
+
+    <div class="">
+        <strong>Log Id :</strong>
+        @Model.Id
+        <hr />
+    </div>
+
+    <div class="">
+        <strong>Logger :</strong>
+        @Model.Logger
+        <hr />
+    </div>
+
+    <div class="">
+        <strong>LogLevel :</strong>
+        @Model.LogLevel.ToString()
+        <hr />
+    </div>
+
+    <div class="">
+        <strong>Url :</strong>
+        @Model.Url
+        <hr />
+    </div>
+
+    <div class="">
+        <strong>Date Time :</strong>
+        @Model.CreateDateTime
+        <hr />
+    </div>
+
+    <div class="">
+        <p class="alert alert-warning">
+            @Model.Message
+        </p>
+        <hr />
+    </div>
+</div>

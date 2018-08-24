@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DbLogger.Core.Application.Dto.AppLogOutput>
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-info">
+        <h4>No log ! You well done </h4>
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Log Id</th>
+                <th>Url</th>
+                <th>Message</th>
+                <th>Date Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@item.Url</td>
+                    <td style="max-width:250px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+                        @item.Message
+                    </td>
+                    <td>
+                        @item.CreateDateTime
+                    </td>
+                    <td>@Html.RouteLink(linkText: "Details", routeName: "dbLoggerDetailsRoute", routeValues: new { id = item.Id }, htmlAttributes: new { @class = "", target = "_blank" })</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+
+}
+
+
+@Html.Partial("_AppLogsPagedList")
