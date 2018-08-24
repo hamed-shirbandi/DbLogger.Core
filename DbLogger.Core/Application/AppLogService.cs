@@ -56,7 +56,7 @@ namespace DbLogger.Core.Application
             var appLog = BindToDomainModel(input);
 
             await _appLogs.AddAsync(appLog);
-
+            await _uow.SaveChangesAsync();
         }
 
 
@@ -69,7 +69,7 @@ namespace DbLogger.Core.Application
             var appLog = BindToDomainModel(input);
 
              _appLogs.Add(appLog);
-
+             _uow.SaveChanges();
         }
 
 

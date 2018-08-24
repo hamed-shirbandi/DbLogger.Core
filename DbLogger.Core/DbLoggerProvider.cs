@@ -150,7 +150,6 @@ namespace DbLogger.Core
 
                     //create log
                     appLogItemsService.Create(appLogItem);
-                    context.SaveChanges();
 
                 }
 
