@@ -40,7 +40,7 @@ namespace DbLogger.Core.Context
         /// <summary>
         /// 
         /// </summary>
-        public DbSet<AppLog> AppLogItems { get; set; }
+        public DbSet<AppLog> AppLogs { get; set; }
 
 
         #endregion
