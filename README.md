@@ -54,6 +54,8 @@ You can also view the [package page](https://www.nuget.org/packages/DbLogger.Cor
 
  - if you need to collect all of your project's Logs in one database, you can set a same connectionString by DbLoggerConnection in their appsettings.json.
  
+ - if you need to customize list and details views and Design your UI, you can override them by Copying items in [Views folder](https://github.com/hamed-shirbandi/DbLogger.Core/tree/master/DbLogger.Core/Views) into your project and modify them as you need.
+ 
  - if you need to manually log something in the application code, so you can use IAppLogService like bellow :
  ```code
  public class HomeController : Controller
@@ -85,6 +87,9 @@ You can also view the [package page](https://www.nuget.org/packages/DbLogger.Cor
  
 # Screenshots
 
-![alt text](https://github.com/hamed-shirbandi/DbLogger.Core/blob/master/DbLogger.Core.Example/wwwroot/images/1.png)
-![alt text](https://github.com/hamed-shirbandi/DbLogger.Core/blob/master/DbLogger.Core.Example/wwwroot/images/2.png)
+![alt text](https://github.com/hamed-shirbandi/DbLogger.Core/blob/master/DbLogger.Core.Example/wwwroot/images/11.png)
+
+![alt text](https://github.com/hamed-shirbandi/DbLogger.Core/blob/master/DbLogger.Core.Example/wwwroot/images/22.png)
+
+
 ![alt text](https://github.com/hamed-shirbandi/DbLogger.Core/blob/master/DbLogger.Core.Example/wwwroot/images/3.png)
