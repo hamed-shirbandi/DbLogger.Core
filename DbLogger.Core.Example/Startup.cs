@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace DbLogger.Core.Example
 {
@@ -32,6 +33,16 @@ namespace DbLogger.Core.Example
             });
 
 
+
+            //add DbLogger Service
+            services.AddDbLogger(options =>
+            {
+                options.logLevel = LogLevel.Error;
+                options.Path = "DbLogs";//use this in url to show logs on view
+                options.ApplicationName = "DbLogger.Core.Example";
+            });
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -47,6 +58,12 @@ namespace DbLogger.Core.Example
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+
+            //add DbLogger middleware
+            app.UseDbLogger();
+
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
