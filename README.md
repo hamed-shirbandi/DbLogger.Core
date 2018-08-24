@@ -86,5 +86,8 @@ You can also view the [package page](https://www.nuget.org/packages/DbLogger.Cor
 # Screenshots
 
 ![alt text](https://github.com/hamed-shirbandi/DbLogger.Core/blob/master/DbLogger.Core.Example/wwwroot/images/11.png)
+
 ![alt text](https://github.com/hamed-shirbandi/DbLogger.Core/blob/master/DbLogger.Core.Example/wwwroot/images/22.png)
+
+
 ![alt text](https://github.com/hamed-shirbandi/DbLogger.Core/blob/master/DbLogger.Core.Example/wwwroot/images/3.png)
