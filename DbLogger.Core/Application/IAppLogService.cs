@@ -12,6 +12,7 @@ namespace DbLogger.Core.Application
     public interface IAppLogService
     {
         Task CreateAsync(AppLogInput input);
+        void Create(AppLogInput input);
         Task<AppLogOutput> GetAsync(long id);
         IEnumerable<AppLogOutput> Search(int page, int recordsPerPage, string term,string applicationName, LogLevel? logLevel, out int pageSize, out int totalItemCount);
         Task<int> CountAsync(LogLevel? logLevel = null);

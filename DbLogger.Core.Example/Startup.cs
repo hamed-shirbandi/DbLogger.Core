@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
-using System;
 
 namespace DbLogger.Core.Example
 {
@@ -25,15 +21,15 @@ namespace DbLogger.Core.Example
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IConfiguration>(provider => { return _configuration; });
 
             //add DbLogger Service
-            services= services.AddDbLogger(options =>
-            {
-                options.logLevel = LogLevel.Error;
-                options.Path = "DbLogs";//use this in url to show logs on view
-                options.ApplicationName = "DbLogger.Core.Example";
-            });
+           services.AddDbLogger(options =>
+             {
+                 options.logLevel = LogLevel.Error;
+                 options.Path = "DbLogs";//use this in url to show logs on view
+                 options.ApplicationName = "DbLogger.Core.Example";
+             });
+
 
 
             services.AddMvc();
@@ -49,6 +45,10 @@ namespace DbLogger.Core.Example
         {
             //add DbLogger middleware
             app.UseDbLogger();
+
+
+            app.UseStaticFiles();
+
 
             app.UseMvc(routes =>
             {

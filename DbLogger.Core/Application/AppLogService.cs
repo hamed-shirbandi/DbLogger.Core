@@ -61,6 +61,19 @@ namespace DbLogger.Core.Application
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public  void Create(AppLogInput input)
+        {
+            var appLog = BindToDomainModel(input);
+
+             _appLogs.Add(appLog);
+
+        }
+
+
+
 
         /// <summary>
         /// 
@@ -223,6 +236,7 @@ namespace DbLogger.Core.Application
             }).ToListAsync();
         }
 
+     
 
 
         #endregion

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLogger.Core", "DbLogger.Core\DbLogger.Core.csproj", "{54EA82EC-22C1-4744-98B9-BBE8DE88BEC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbLogger.Core", "DbLogger.Core\DbLogger.Core.csproj", "{54EA82EC-22C1-4744-98B9-BBE8DE88BEC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLogger.Core.Tests", "DbLogger.Core.Tests\DbLogger.Core.Tests.csproj", "{E414B5CB-EBDD-43E3-B648-1E06AEEFBF06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbLogger.Core.Tests", "DbLogger.Core.Tests\DbLogger.Core.Tests.csproj", "{E414B5CB-EBDD-43E3-B648-1E06AEEFBF06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLogger.Core.Example", "DbLogger.Core.Example\DbLogger.Core.Example.csproj", "{50AA7B31-02AD-4DFC-8C5E-910461A4AA0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbLogger.Core.Example", "DbLogger.Core.Example\DbLogger.Core.Example.csproj", "{50AA7B31-02AD-4DFC-8C5E-910461A4AA0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

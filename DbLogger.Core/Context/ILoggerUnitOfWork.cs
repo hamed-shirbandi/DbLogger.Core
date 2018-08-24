@@ -22,5 +22,7 @@ namespace DbLogger.Core.Context
 
         int SaveChanges();
         Task<int> SaveChangesAsync();
+        void Migrate();
+
     }
 }

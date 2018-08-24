@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using DbLogger.Core.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
+using DbLogger.Core.Application.Dto;
 
 namespace DbLogger.Core
 {
@@ -32,7 +33,6 @@ namespace DbLogger.Core
                 throw new ArgumentNullException(nameof(setupAction));
             }
 
-            services.AddDbContext<LoggerDbContext>(ServiceLifetime.Scoped);
             services.AddScoped<ILoggerUnitOfWork, LoggerDbContext>();
             services.AddScoped<IAppLogService, AppLogService>();
             services.Configure(setupAction);
@@ -53,27 +53,29 @@ namespace DbLogger.Core
                 throw new ArgumentNullException(nameof(app));
             }
 
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                //init database - add log table to application db
-                var context = serviceScope.ServiceProvider.GetRequiredService<LoggerDbContext>();
-                context.Database.Migrate();
-            }
-
 
             //set logger provider
             var factory = app.ApplicationServices.GetRequiredService<ILoggerFactory>();
-            var provider = app.ApplicationServices.GetRequiredService<DbLoggerProvider>();
-            factory.AddProvider(provider);
-
-
-            //set routes 
             var options = app.ApplicationServices.GetRequiredService<IOptions<DbLoggerOptions>>();
+            factory.AddProvider(new DbLoggerProvider(app.ApplicationServices, options));
+
+
+            //migrate db
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<ILoggerUnitOfWork>();
+                context.Migrate();
+
+            }
+
+            
+            //set routes 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("dbLoggerDefaultRoute", options.Value.Path, new { controller = "AppLogItems", action = "Index" });
-                routes.MapRoute("dbLoggerDetailsRoute", options.Value.Path + "/{id}", new { controller = "AppLogItems", action = "Details", id = 0 });
+                routes.MapRoute("dbLoggerDefaultRoute", options.Value.Path, new { controller = "AppLogs", action = "Index" });
+                routes.MapRoute("dbLoggerDetailsRoute", options.Value.Path + "/{id}", new { controller = "AppLogs", action = "Details", id = 0 });
             });
+
 
             //ignore route - prevent direct access to controller
             return app.UseMiddleware<IgnoreRoutesMiddleware>(); 

@@ -76,6 +76,7 @@ namespace DbLogger.Core.Context
         {
             base.OnModelCreating(builder);
 
+           
         }
 
 
@@ -87,6 +88,17 @@ namespace DbLogger.Core.Context
 
 
         #region IUnitOfWork Implementations
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Migrate()
+        {
+            this.Database.Migrate();
+        }
+
 
 
 

@@ -149,7 +149,7 @@ namespace DbLogger.Core
                     var appLogItemsService = serviceScope.ServiceProvider.GetRequiredService<IAppLogService>();
 
                     //create log
-                    appLogItemsService.CreateAsync(appLogItem);
+                    appLogItemsService.Create(appLogItem);
                     context.SaveChanges();
 
                 }
