@@ -32,6 +32,7 @@ namespace DbLogger.Core
                 throw new ArgumentNullException(nameof(setupAction));
             }
 
+            services.AddDbContext<LoggerDbContext>(ServiceLifetime.Scoped);
             services.AddScoped<ILoggerUnitOfWork, LoggerDbContext>();
             services.AddScoped<IAppLogService, AppLogService>();
             services.Configure(setupAction);

@@ -8,8 +8,12 @@ using DbLogger.Core.Domain;
 
 namespace DbLogger.Core.Context
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class LoggerDbContext : DbContext, ILoggerUnitOfWork
-    { 
+    {
         #region Fields
 
         private readonly IConfiguration _configuration;
@@ -20,7 +24,9 @@ namespace DbLogger.Core.Context
         #region Ctor
 
 
-     
+        /// <summary>
+        /// 
+        /// </summary>
         public LoggerDbContext(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -29,8 +35,13 @@ namespace DbLogger.Core.Context
         #endregion
 
         #region Properties
-        
+
+
+        /// <summary>
+        /// 
+        /// </summary>
         public DbSet<AppLog> AppLogItems { get; set; }
+
 
         #endregion
 
@@ -43,8 +54,8 @@ namespace DbLogger.Core.Context
         /// </summary>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var useInMemoryDatabase = _configuration["UseInMemoryDatabase"].Equals("true", StringComparison.OrdinalIgnoreCase);
-            if (useInMemoryDatabase)
+            var useInMemoryDatabase = _configuration["UseInMemoryDatabase"];
+            if (!string.IsNullOrEmpty(useInMemoryDatabase) && useInMemoryDatabase.Equals("true", StringComparison.OrdinalIgnoreCase))
             {
                 optionsBuilder.UseInMemoryDatabase(databaseName: "Add_writes_to_database");
             }
@@ -55,7 +66,7 @@ namespace DbLogger.Core.Context
         }
 
 
-        
+
 
 
         /// <summary>

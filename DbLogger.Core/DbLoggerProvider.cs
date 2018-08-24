@@ -38,7 +38,7 @@ namespace DbLogger.Core
         /// </summary>
         public ILogger CreateLogger(string categoryName)
         {
-            return new DbLogger(_serviceProvider, categoryName, _options);
+            return new CustomDbLogger(_serviceProvider, categoryName, _options);
         }
 
 
@@ -57,7 +57,7 @@ namespace DbLogger.Core
     /// <summary>
     /// 
     /// </summary>
-    public class DbLogger : ILogger
+    public class CustomDbLogger : ILogger
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly Func<string, LogLevel, bool> _filter;
@@ -68,7 +68,7 @@ namespace DbLogger.Core
         /// <summary>
         /// 
         /// </summary>
-        public DbLogger(IServiceProvider serviceProvider, string loggerName, DbLoggerOptions options)
+        public CustomDbLogger(IServiceProvider serviceProvider, string loggerName, DbLoggerOptions options)
         {
             _loggerName = loggerName;
             _options = options;
