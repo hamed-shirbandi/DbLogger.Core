@@ -33,6 +33,7 @@ namespace DbLogger.Core
                 throw new ArgumentNullException(nameof(setupAction));
             }
 
+            services.AddHttpContextAccessor();
             services.AddScoped<ILoggerUnitOfWork, LoggerDbContext>();
             services.AddScoped<IAppLogService, AppLogService>();
             services.Configure(setupAction);

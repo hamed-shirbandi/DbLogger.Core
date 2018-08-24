@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿
+@using Microsoft.Extensions.Options;
+@using DbLogger.Core;
+@inject IOptions<DbLoggerOptions> options
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -31,8 +36,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a href="/@options.Value.Path">Error logs page</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Error" target="_blank">Make an error</a></li>
                 </ul>
             </div>
         </div>
