@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Title>DbLogger.Core</Title>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>A full-featured logger to log events into Database to be used in ASP.NET Core 2.1 projects</Description>
+    <Description>A full-featured logger to log events into Database to be used in ASP.NET Core 2.x projects</Description>
     <VersionPrefix>1.0.1</VersionPrefix>
     <Version>1.0.1</Version>
     <Authors>hamed shirbandi</Authors>
