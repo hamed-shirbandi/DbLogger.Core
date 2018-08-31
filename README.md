@@ -1,6 +1,6 @@
 # What is this ?
 
-A full-featured logger to log events into Database to be used in ASP.NET Core 2.1 projects
+A full-featured logger to log events into Database to be used in ASP.NET Core 2.x projects
 
 By using this library you will have the following features in your project:
 - Automatically logging all of the errors and events for each request based on LogLevel.
