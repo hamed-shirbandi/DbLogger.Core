@@ -4,8 +4,8 @@
     <Title>DbLogger.Core</Title>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>A full-featured logger to log events into Database to be used in ASP.NET Core 2.x projects</Description>
-    <VersionPrefix>1.0.1</VersionPrefix>
-    <Version>1.0.1</Version>
+    <VersionPrefix>1.0.2</VersionPrefix>
+    <Version>1.0.2</Version>
     <Authors>hamed shirbandi</Authors>
     <Company>CodeBlock</Company>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
