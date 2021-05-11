@@ -7,6 +7,8 @@ using DbLogger.Core.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
 using DbLogger.Core.Application.Dto;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using DbLogger.Core.Controllers;
 
 namespace DbLogger.Core
 {
@@ -40,7 +42,7 @@ namespace DbLogger.Core
             return services;
         }
 
-        
+
 
 
 
@@ -69,17 +71,45 @@ namespace DbLogger.Core
 
             }
 
-            
-            //set routes 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute("dbLoggerDefaultRoute", options.Value.Path, new { controller = "AppLogs", action = "Index" });
-                routes.MapRoute("dbLoggerDetailsRoute", options.Value.Path + "/{id}", new { controller = "AppLogs", action = "Details", id = 0 });
+                endpoints.MapControllerRoute("dbLoggerDefaultRoute", options.Value.Path, new { controller = "AppLogs", action = "Index" });
+                endpoints.MapControllerRoute("dbLoggerDetailsRoute", options.Value.Path + "/{id}", new { controller = "AppLogs", action = "Details", id = 0 });
             });
 
 
             //ignore route - prevent direct access to controller
-            return app.UseMiddleware<IgnoreRoutesMiddleware>(); 
+            return app.UseMiddleware<IgnoreRoutesMiddleware>();
+        }
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void ConfigureDbLoggerPlugin(this ApplicationPartManager applicationPartManager)
+        {
+
+            var dBLoggerAssembly = typeof(AppLogsController).Assembly;
+            var dBLoggerPartFactory = ApplicationPartFactory.GetApplicationPartFactory(dBLoggerAssembly);
+
+            foreach (var part in dBLoggerPartFactory.GetApplicationParts(dBLoggerAssembly))
+            {
+                applicationPartManager.ApplicationParts.Add(part);
+            }
+
+            var dBLoggerRelatedAssemblies = RelatedAssemblyAttribute.GetRelatedAssemblies(dBLoggerAssembly, throwOnError: true);
+            foreach (var assembly in dBLoggerRelatedAssemblies)
+            {
+                dBLoggerPartFactory = ApplicationPartFactory.GetApplicationPartFactory(assembly);
+                foreach (var part in dBLoggerPartFactory.GetApplicationParts(assembly))
+                {
+                    applicationPartManager.ApplicationParts.Add(part);
+                }
+            }
+
+
         }
 
     }

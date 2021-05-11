@@ -32,7 +32,7 @@ namespace DbLogger.Core.Example
 
 
 
-            services.AddMvc();
+            services.AddControllersWithViews();
 
 
         }
@@ -47,22 +47,22 @@ namespace DbLogger.Core.Example
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
 
 
-            //add DbLogger middleware
-            app.UseDbLogger();
-
+        
 
             app.UseStaticFiles();
+            app.UseRouting();
 
-
-            app.UseMvc(routes =>
+            //add DbLogger middleware
+            app.UseDbLogger();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
             });
         }
     }

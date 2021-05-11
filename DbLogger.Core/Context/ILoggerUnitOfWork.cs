@@ -17,9 +17,7 @@ namespace DbLogger.Core.Context
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
         void MarkAsModified<TEntity>(TEntity entity) where TEntity : class;
         void MarkAsDeleted<TEntity>(TEntity entity) where TEntity : class;
-        void ExecuteSqlCommand(string query);
-        void ExecuteSqlCommand(string query, params object[] parameters);
-
+     
         int SaveChanges();
         Task<int> SaveChangesAsync();
         void Migrate();

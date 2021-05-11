@@ -76,7 +76,7 @@ namespace DbLogger.Core.Context
         {
             base.OnModelCreating(builder);
 
-           
+
         }
 
 
@@ -143,32 +143,12 @@ namespace DbLogger.Core.Context
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void ExecuteSqlCommand(string query)
-        {
-            base.Database.ExecuteSqlCommand(query);
-        }
-
-
 
 
         /// <summary>
         /// 
         /// </summary>
-        public void ExecuteSqlCommand(string query, params object[] parameters)
-        {
-            base.Database.ExecuteSqlCommand(query, parameters);
-        }
-
-
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int SaveChanges()
+        public override int SaveChanges()
         {
             return base.SaveChanges();
         }

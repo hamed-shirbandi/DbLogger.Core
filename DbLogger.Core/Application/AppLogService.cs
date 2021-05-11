@@ -4,12 +4,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
-using DbLogger.Core.Domain;
-using DbLogger.Core.Context;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
-using DbLogger.Core.Application.Dto;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using DbLogger.Core.Application.Dto;
+using DbLogger.Core.Domain;
+using DbLogger.Core.Context;
 
 namespace DbLogger.Core.Application
 {
