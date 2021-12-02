@@ -1,24 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿
 
-namespace DbLogger.Core.Example
+using DbLogger.Core;
+
+var builder = WebApplication.CreateBuilder(args);
+
+//add DbLogger Service
+builder.Services.AddDbLogger(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
+    options.logLevel = LogLevel.Error;
+    options.Path = "DbLogs";//use this in url to show logs on view
+    options.ApplicationName = "DbLogger.Core.Example";
+});
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
+
+
+ builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
 }
+
+
+app.UseStaticFiles();
+app.UseRouting();
+
+//add DbLogger middleware
+app.UseDbLogger();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+});
+
+app.Run();
